@@ -8,11 +8,13 @@ import database.Database;
 import factory.BibliographyFactory;
 import factory.BookFactory;
 import factory.ComputerFileFactory;
+import javafx.application.Application;
 import model.artwork.Artwork;
 import model.author.Author;
 import model.bibliography.Bibliography;
 import model.book.Book;
 import model.computerfile.ComputerFile;
+import view.HomeView;
 
 public class Main {
 
@@ -1036,7 +1038,10 @@ public class Main {
         }
 
         public static void main(String[] args) {
-                new Main();
+//                new Main();
+//        	Application.launch(args);
+
+        	Application.launch(HomeView.class,args);
 
         }
 
