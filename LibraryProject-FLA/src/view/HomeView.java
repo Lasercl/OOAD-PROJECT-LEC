@@ -2,19 +2,28 @@ package view;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 
 public class HomeView extends Application implements EventHandler<ActionEvent>{
-	private Button insertButton, updateButton, deleteButton,SearchButton,DisplayAllButton;
+	private Button book,computerFile, artwork;
 	private BorderPane borderPane;
 	private Scene scene;
 	private GridPane gridPane;
+	private Label library;
+    private BorderPane root;
+    private VBox sidebar;
+    private StackPane contentPane;
+    private Label title;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
@@ -32,16 +41,27 @@ public class HomeView extends Application implements EventHandler<ActionEvent>{
 		
 	}
 	public void layout() {
-		gridPane.add(insertButton, 0, 1);
-		gridPane.add(updateButton, 0, 2);
-		gridPane.add(deleteButton, 0, 3);
-		gridPane.add(SearchButton, 0, 4);
-		gridPane.add(DisplayAllButton, 0, 5);
+		gridPane.add(book, 0, 1);
+		gridPane.add(computerFile, 0, 2);
+		gridPane.add(artwork, 0, 3);
+		//TITLE FONT
+		title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        title.setTextFill(Color.WHITE);
+        title.setStyle("-fx-background-color: #8B5A2A");
+        //BAGIAN KIRI
+        sidebar.setPadding(new Insets(30));
+        sidebar.setPrefWidth(200);
+        sidebar.setStyle("-fx-background-color: #8B5A2B;"); // Warna sidebar coklat
+        
+        sidebar.getChildren().addAll(title, book, computerFile, artwork);
+        sidebar.setPrefWidth(250);
+        //nambah bagian kiri
+        root.setLeft(sidebar);
 	}
 	private void setEventHandler() {
-		insertButton.setOnAction(this);
-		updateButton.setOnAction(this);
-		deleteButton.setOnAction(this);
+		book.setOnAction(this);
+		computerFile.setOnAction(this);
+		artwork.setOnAction(this);
 	}
 
 	public void initialize() {
@@ -52,15 +72,19 @@ public class HomeView extends Application implements EventHandler<ActionEvent>{
 //		usernameTF = new TextField();
 //		emailTF = new TextField();
 //		passwordTF = new PasswordField();
-
-		insertButton = new Button("Insert");
-		updateButton = new Button("Update");
-		deleteButton = new Button("Delete");
-		SearchButton = new Button("Search By Category");
-		DisplayAllButton=new Button("Display All");
+		contentPane=new StackPane();
+        root = new BorderPane();
+        sidebar = new VBox(20);
+        title=new Label("LIBRARY MANAGEMENT");
+		library=new Label("WELCOM");
+		book = new Button("Book");
+		computerFile = new Button("Computer File");
+//		deleteButton = new Button("Delete");
+		artwork = new Button("Artwork");
+//		DisplayAllButton=new Button("Display All");
 		
 		borderPane = new BorderPane();
-		scene = new Scene(borderPane);
+		scene = new Scene(root,1000,600);
 
 		gridPane = new GridPane();
 		borderPane.setCenter(gridPane);
@@ -75,14 +99,9 @@ public class HomeView extends Application implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==insertButton) {
+		if(e.getSource()==book) {
 			System.out.println("masuk insert");
-			 try {
-		            InsertView insertView = new InsertView();
-		            insertView.start((Stage) insertButton.getScene().getWindow());
-		        } catch (Exception ex) {
-		            ex.printStackTrace();
-		        }
+			
 		}
 		
 	}
