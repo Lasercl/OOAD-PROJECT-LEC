@@ -1038,8 +1038,6 @@ public class Main {
         }
 
         public static void main(String[] args) {
-//                new Main();
-//        	Application.launch(args);
 
         	Application.launch(HomeView.class,args);
 
