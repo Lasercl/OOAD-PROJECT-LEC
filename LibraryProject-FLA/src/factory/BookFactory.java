@@ -8,7 +8,7 @@ import model.book.HorrorBook;
 import model.book.RomanceBook;
 
 public class BookFactory extends BibliographyFactory {
-	public Book createBook(String title, Author author, String subject, String bookID, int yearPublish,
+	public static Book createBook(String title, Author author, String subject, String bookID, int yearPublish,
 			String publisher,
 			String edition, int page, String genre) {
 		Book book = null;
