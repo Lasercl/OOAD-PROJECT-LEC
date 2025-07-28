@@ -57,6 +57,8 @@ public class HomeView extends Application implements EventHandler<ActionEvent>{
         sidebar.setPrefWidth(250);
         //nambah bagian kiri
         root.setLeft(sidebar);
+        root.setCenter(contentPane);
+
 	}
 	private void setEventHandler() {
 		book.setOnAction(this);
@@ -100,8 +102,18 @@ public class HomeView extends Application implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==book) {
-			System.out.println("masuk insert");
-			
+			   
+			BookTableView tableView = new BookTableView();
+	        contentPane.getChildren().setAll(tableView.getNode());
+		        
+		}else if(e.getSource()==computerFile){
+			ComputerFileTableView computerFile=new ComputerFileTableView();
+	        contentPane.getChildren().setAll(computerFile.getNode());
+
+		}else {
+			  
+			ArtWorkTableView artworkTable=new ArtWorkTableView();
+	        contentPane.getChildren().setAll(artworkTable.getNode());
 		}
 		
 	}
